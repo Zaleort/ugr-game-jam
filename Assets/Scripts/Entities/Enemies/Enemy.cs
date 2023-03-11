@@ -27,28 +27,20 @@ public class Enemy : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+
+    }
+
+    private void ApplyDamage(float damage)
+    {
+        health -= damage;
+        if (health <= 0)
         {
-            // Removes this script instance from the game object
             Destroy(this.gameObject);
         }
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnAttackCollision(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
-        {
-            // Removes this script instance from the game object
-            Destroy(this.gameObject);
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            // Removes this script instance from the game object
-            Destroy(this.gameObject);
-        }
+        //
     }
 }
