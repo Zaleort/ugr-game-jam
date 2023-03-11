@@ -6,7 +6,6 @@ using System;
 public class Player : MonoBehaviour
 {
     private const float BASE_RUN_SPEED = 20.0f;
-    private const float BASE_DAMAGE = 1f;
     private const float BASE_CHARGING_SPEED = 0.5f;
     private const float BASE_DRAINING_SPEED = 0.05f;
     private const float BASE_MAX_ENERGY = 100f;
@@ -20,7 +19,6 @@ public class Player : MonoBehaviour
 
     public float health = 100.0f;
     public float runSpeed = BASE_RUN_SPEED;
-    public float baseDamage = BASE_DAMAGE;
     private int exp = 0;
     private int level = 0;
 
@@ -70,9 +68,6 @@ public class Player : MonoBehaviour
         {
             case UpgradeType.Health:
                 health += value;
-                break;
-            case UpgradeType.Damage:
-                baseDamage += value;
                 break;
             case UpgradeType.Speed:
                 runSpeed += value;
@@ -204,7 +199,6 @@ public class Player : MonoBehaviour
     private void ResetStats()
     {
         runSpeed = BASE_RUN_SPEED;
-        baseDamage = BASE_DAMAGE;
         chargingSpeed = BASE_CHARGING_SPEED;
         drainingSpeed = BASE_DRAINING_SPEED;
         attacks.Clear();

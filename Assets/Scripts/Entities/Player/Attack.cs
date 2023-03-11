@@ -5,7 +5,6 @@ using UnityEngine;
 public abstract class Attack : MonoBehaviour
 {
     public AttackType type;
-    public float baseDamage;
     public float damage;
 
     private void FixedUpdate()
