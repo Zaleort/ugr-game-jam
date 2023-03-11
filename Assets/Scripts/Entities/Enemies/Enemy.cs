@@ -7,7 +7,6 @@ public class Enemy : MonoBehaviour
     private GameObject target; //the enemy's target
     public float moveSpeed = 5; //move speed
     public float rotationSpeed = 5; //speed of turning
-    private Rigidbody2D rb;
 
     public float health;
     public float damage;
@@ -58,6 +57,5 @@ public class Enemy : MonoBehaviour
     private void SetTarget()
     {
         target = GameObject.Find("Player");
-        rb = GetComponent<Rigidbody2D>();
     }
 }
