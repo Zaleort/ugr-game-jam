@@ -14,7 +14,7 @@ public class SpawnerTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             Instantiate(enemy, this.transform.position, this.transform.rotation);
         }
