@@ -1,22 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Player : MonoBehaviour
 {
+    private const float BASE_RUN_SPEED = 20.0f;
+    private const float BASE_DAMAGE = 1f;
+    private const float BASE_CHARGING_SPEED = 0.5f;
+    private const float BASE_DRAINING_SPEED = 0.05f;
+
     Rigidbody2D body;
+    public Attack[] attacks;
   
     float horizontal;
     float vertical;
 
     public float health = 100.0f;
-    public float runSpeed = 20.0f;
-    public int baseDamage = 1;
+    public float runSpeed = BASE_RUN_SPEED;
+    public float baseDamage = BASE_DAMAGE;
     private int exp = 0;
     private int level = 0;
 
     private float energy = 100.0f;
-    private float chargingSpeed = 0.5f;
+    private float chargingSpeed = BASE_CHARGING_SPEED;
+    private float drainingSpeed = BASE_DRAINING_SPEED;
 
     void Start()
     {
@@ -26,6 +34,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         Move();
+        OnEmptyChargeDestroyPowerUps();
     }
 
     private void FixedUpdate()
@@ -61,7 +70,7 @@ public class Player : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
-            // GameOver;
+            SendMessageUpwards(GameControllerEvents.Death);
         }
     }
 
@@ -73,7 +82,7 @@ public class Player : MonoBehaviour
             exp = 0;
             level++;
 
-            // LevelUp event
+            SendMessageUpwards(GameControllerEvents.LevelUp);
         } 
     }
 
@@ -86,8 +95,7 @@ public class Player : MonoBehaviour
     {
         if (energy <= 0)
         {
-            // Set attacks array to empty
-            // set base stats
+            ResetStats();
         }
     }
 
@@ -122,5 +130,14 @@ public class Player : MonoBehaviour
         }
 
         Charge();
+    }
+
+    private void ResetStats()
+    {
+        runSpeed = BASE_RUN_SPEED;
+        baseDamage = BASE_DAMAGE;
+        chargingSpeed = BASE_CHARGING_SPEED;
+        drainingSpeed = BASE_DRAINING_SPEED;
+        Array.Clear(attacks, 0, attacks.Length);
     }
 }

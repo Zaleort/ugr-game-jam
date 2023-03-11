@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface AttackType
+public enum AttackType
 {
-    public void DoAttack();
+    Blades,
+    Poison,
+    Spikes,
+    Laser,
 }
