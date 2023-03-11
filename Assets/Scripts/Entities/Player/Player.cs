@@ -6,8 +6,8 @@ using System;
 public class Player : MonoBehaviour
 {
     private const float BASE_RUN_SPEED = 20.0f;
-    private const float BASE_CHARGING_SPEED = 0.5f;
-    private const float BASE_DRAINING_SPEED = 0.05f;
+    private const float BASE_CHARGING_SPEED = 0.25f;
+    private const float BASE_DRAINING_SPEED = 0.015f;
     private const float BASE_MAX_ENERGY = 100f;
     public const int EXP_TO_LEVEL_UP = 20;
 
@@ -160,7 +160,7 @@ public class Player : MonoBehaviour
 
     private void Drain()
     {
-        if (!isCharging && attacks.Count > 0)
+        if (!isCharging)
         {
             energy -= drainingSpeed;
             energyBar.UpdateEnergyBar();
