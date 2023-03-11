@@ -27,7 +27,7 @@ public class Enemy : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-
+        OnAttackCollision(collision);
     }
 
     private void ApplyDamage(float damage)
@@ -41,6 +41,12 @@ public class Enemy : MonoBehaviour
 
     private void OnAttackCollision(Collision2D collision)
     {
-        //
+        Attack attack = collision.gameObject.GetComponent<Attack>();
+        if (attack == null)
+        {
+            return;
+        }
+
+        ApplyDamage(attack.damage);
     }
 }
