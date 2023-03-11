@@ -52,14 +52,18 @@ public class Player : MonoBehaviour
         OnDustCollision(collision);
     }
 
-    public void OnCollisionStay2D(Collision2D collision)
+    public void OnTriggerStay2D(Collider2D collision)
     {
-        OnChargingStationCollision(collision);
+       OnChargingStationCollision(collision);
     }
 
-    public void OnCollisionExit2D(Collision2D collision)
+    public void OnTriggerExit2D(Collider2D collision)
     {
         OnChargingStationCollisionExit(collision);
+    }
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+       OnChargingStationCollision(collision);
     }
 
     public void AddStatUpgrade(UpgradeType upgrade, float value)
@@ -173,7 +177,7 @@ public class Player : MonoBehaviour
         AddExperience();
     }
 
-    private void OnChargingStationCollision(Collision2D collision)
+    private void OnChargingStationCollision(Collider2D collision)
     {
         ChargingStation chargingStation = collision.gameObject.GetComponent<ChargingStation>();
         if (chargingStation == null)
@@ -185,7 +189,7 @@ public class Player : MonoBehaviour
         Charge();
     }
 
-    private void OnChargingStationCollisionExit(Collision2D collision)
+    private void OnChargingStationCollisionExit(Collider2D collision)
     {
         ChargingStation chargingStation = collision.gameObject.GetComponent<ChargingStation>();
         if (chargingStation == null)
