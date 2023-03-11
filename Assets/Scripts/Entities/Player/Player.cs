@@ -17,7 +17,6 @@ public class Player : MonoBehaviour
 
     private float energy = 100.0f;
     private float chargingSpeed = 0.5f;
-    private bool isCharging = false; 
 
     void Start()
     {
@@ -43,7 +42,7 @@ public class Player : MonoBehaviour
 
     public void OnCollisionStay2D(Collision2D collision)
     {
-        OnCharginStationCollision(collision);
+        OnChargingStationCollision(collision);
     }
 
     private void Move()
@@ -103,7 +102,7 @@ public class Player : MonoBehaviour
         ApplyDamage(enemy.damage);
     }
 
-    private void OnDustCollision()
+    private void OnDustCollision(Collision2D collision)
     {
         Dust dust = collision.gameObject.GetComponent<Dust>();
         if (dust != null)
