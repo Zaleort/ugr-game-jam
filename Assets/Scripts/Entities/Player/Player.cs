@@ -85,6 +85,16 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void AddStatDowngrade(DowngradeType type)
+    {
+        switch (type)
+        {
+            case DowngradeType.Draining:
+                drainingSpeed += BASE_DRAINING_SPEED;
+                break;
+        }
+    }
+
     public void AddAttackUpgrade(Attack attack)
     {
         Attack existingAttack = attacks.Find((a) => a.type == attack.type);
@@ -95,8 +105,10 @@ public class Player : MonoBehaviour
 
         else
         {
-            attacks.Add(attack);
+            ActivateAttack(attack);
         }
+
+        AddStatDowngrade(DowngradeType.Draining);
     }
 
     private void Move()
@@ -205,6 +217,32 @@ public class Player : MonoBehaviour
         runSpeed = BASE_RUN_SPEED;
         chargingSpeed = BASE_CHARGING_SPEED;
         drainingSpeed = BASE_DRAINING_SPEED;
+        DeactivateAttacks();
+    }
+
+    private void DeactivateAttacks()
+    {
+        Attack[] attackComponents = gameObject.GetComponentsInChildren<Attack>();
+        foreach (Attack attackComponent in attackComponents)
+        {
+            attackComponent.gameObject.SetActive(false);
+        }
+
         attacks.Clear();
+    }
+
+    private void ActivateAttack(Attack attack)
+    {
+        Attack[] attackComponents = gameObject.GetComponentsInChildren<Attack>();
+        foreach (Attack attackComponent in attackComponents)
+        {
+            if (attackComponent.type != attack.type)
+            {
+                continue;
+            }
+
+            attackComponent.gameObject.SetActive(true);
+            attacks.Add(attack);
+        }
     }
 }
