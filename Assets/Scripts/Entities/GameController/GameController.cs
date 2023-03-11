@@ -5,9 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
+    public LevelManager levelManager;
+    public Player player;
     public void LevelUp(int level)
     {
-        // Select upgrade
+        Debug.Log(level);
+        levelManager.SetUpgrades(level);
     }
 
     public void Death()

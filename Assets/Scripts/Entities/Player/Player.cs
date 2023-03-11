@@ -143,7 +143,7 @@ public class Player : MonoBehaviour
             experience = 0;
             level++;
 
-            SendMessageUpwards(GameControllerEvents.LevelUp);
+            SendMessageUpwards(GameControllerEvents.LevelUp, level);
         }
 
         experienceBar.UpdateExperienceBar();
@@ -225,6 +225,7 @@ public class Player : MonoBehaviour
         runSpeed = BASE_RUN_SPEED;
         chargingSpeed = BASE_CHARGING_SPEED;
         drainingSpeed = BASE_DRAINING_SPEED;
+        level = 0;
         DeactivateAttacks();
     }
 

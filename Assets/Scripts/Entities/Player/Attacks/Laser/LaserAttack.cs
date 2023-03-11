@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Laser : Attack
+public class LaserAttack : Attack
 {
     public override void Upgrade()
     {
