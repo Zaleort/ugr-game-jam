@@ -85,12 +85,12 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void AddStatDowngrade(DowngradeType type)
+    public void AddStatDowngrade(DowngradeType type, float value)
     {
         switch (type)
         {
             case DowngradeType.Draining:
-                drainingSpeed += BASE_DRAINING_SPEED;
+                drainingSpeed += value;
                 break;
         }
     }
@@ -108,7 +108,7 @@ public class Player : MonoBehaviour
             ActivateAttack(attack);
         }
 
-        AddStatDowngrade(DowngradeType.Draining);
+        AddStatDowngrade(DowngradeType.Draining, BASE_DRAINING_SPEED);
     }
 
     private void Move()
