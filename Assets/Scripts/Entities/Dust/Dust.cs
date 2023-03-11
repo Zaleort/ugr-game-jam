@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Dust : MonoBehaviour
 {
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
         Player player = collision.gameObject.GetComponent<Player>();
         if (player != null)

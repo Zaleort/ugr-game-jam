@@ -9,21 +9,24 @@ public class Player : MonoBehaviour
     private const float BASE_CHARGING_SPEED = 0.5f;
     private const float BASE_DRAINING_SPEED = 0.05f;
     private const float BASE_MAX_ENERGY = 100f;
-    private const int EXP_TO_LEVEL_UP = 20;
+    public const int EXP_TO_LEVEL_UP = 20;
 
     Rigidbody2D body;
     public List<Attack> attacks = new List<Attack>();
+    public HealthBar healthBar;
+    public EnergyBar energyBar;
+    public ExperienceBar experienceBar;
   
     float horizontal;
     float vertical;
 
     public float health = 100.0f;
     public float runSpeed = BASE_RUN_SPEED;
-    private int exp = 0;
+    public int experience = 0;
     private int level = 0;
 
-    private float energy = BASE_MAX_ENERGY;
-    private float maxEnergy = BASE_MAX_ENERGY;
+    public float energy = BASE_MAX_ENERGY;
+    public float maxEnergy = BASE_MAX_ENERGY;
     private bool isCharging = false;
     private float chargingSpeed = BASE_CHARGING_SPEED;
     private float drainingSpeed = BASE_DRAINING_SPEED;
@@ -125,6 +128,7 @@ public class Player : MonoBehaviour
     private void ApplyDamage(float damage)
     {
         health -= damage;
+        healthBar.UpdateHealthBar();
         if (health <= 0)
         {
             SendMessageUpwards(GameControllerEvents.Death);
@@ -133,14 +137,16 @@ public class Player : MonoBehaviour
 
     private void AddExperience()
     {
-        exp += 1;
-        if (exp >= EXP_TO_LEVEL_UP)
+        experience += 1;
+        if (experience >= EXP_TO_LEVEL_UP)
         {
-            exp = 0;
+            experience = 0;
             level++;
 
             SendMessageUpwards(GameControllerEvents.LevelUp);
-        } 
+        }
+
+        experienceBar.UpdateExperienceBar();
     }
 
     private void Charge()
@@ -148,6 +154,7 @@ public class Player : MonoBehaviour
         if (isCharging && energy < maxEnergy)
         {
             energy += chargingSpeed;
+            energyBar.UpdateEnergyBar();
         }
     }
 
@@ -156,6 +163,7 @@ public class Player : MonoBehaviour
         if (!isCharging && attacks.Count > 0)
         {
             energy -= drainingSpeed;
+            energyBar.UpdateEnergyBar();
         }
     }
 
@@ -170,7 +178,7 @@ public class Player : MonoBehaviour
     private void OnEnemyCollision(Collision2D collision)
     {
         Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-        if (enemy != null)
+        if (enemy == null)
         {
             return;
         }
@@ -181,7 +189,7 @@ public class Player : MonoBehaviour
     private void OnDustCollision(Collision2D collision)
     {
         Dust dust = collision.gameObject.GetComponent<Dust>();
-        if (dust != null)
+        if (dust == null)
         {
             return;
         }
