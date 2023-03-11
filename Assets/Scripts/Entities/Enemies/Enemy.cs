@@ -9,20 +9,17 @@ public class Enemy : MonoBehaviour
     public float rotationSpeed = 5; //speed of turning
     private Rigidbody2D rb;
 
-    private float health;
+    public float health;
     public float damage;
 
-    void Start()
+    private void Start()
     {
-        target = GameObject.Find("Player");
-        rb = GetComponent<Rigidbody2D>();
+        SetTarget();
     }
-    void Update()
+
+    private void Update()
     {
-        //rotate to look at the player ja
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target.transform.position - transform.position), rotationSpeed * Time.deltaTime);
-        //move towards the player
-        transform.position += transform.forward * Time.deltaTime * moveSpeed;
+        MoveToPlayer();
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -48,5 +45,19 @@ public class Enemy : MonoBehaviour
         }
 
         ApplyDamage(attack.damage);
+    }
+
+    private void MoveToPlayer()
+    {
+        //rotate to look at the player ja
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target.transform.position - transform.position), rotationSpeed * Time.deltaTime);
+        //move towards the player
+        transform.position += transform.forward * Time.deltaTime * moveSpeed;
+    }
+
+    private void SetTarget()
+    {
+        target = GameObject.Find("Player");
+        rb = GetComponent<Rigidbody2D>();
     }
 }
