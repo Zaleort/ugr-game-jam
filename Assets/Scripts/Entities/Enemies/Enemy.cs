@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour
     }
     void Update()
     {
-        //rotate to look at the player
+        //rotate to look at the player ja
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target.transform.position - transform.position), rotationSpeed * Time.deltaTime);
         //move towards the player
         transform.position += transform.forward * Time.deltaTime * moveSpeed;
