@@ -8,6 +8,10 @@ public class Enemy : MonoBehaviour
     public float moveSpeed = 5; //move speed
     public float rotationSpeed = 5; //speed of turning
     private Rigidbody2D rb;
+
+    private float health;
+    public float damage;
+
     void Start()
     {
         target = GameObject.Find("Player");
