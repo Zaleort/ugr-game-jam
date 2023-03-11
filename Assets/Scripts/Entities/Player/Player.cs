@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     private const float BASE_DAMAGE = 1f;
     private const float BASE_CHARGING_SPEED = 0.5f;
     private const float BASE_DRAINING_SPEED = 0.05f;
+    private const float BASE_MAX_ENERGY = 100f;
+    private const int EXP_TO_LEVEL_UP = 20;
 
     Rigidbody2D body;
     public List<Attack> attacks = new List<Attack>();
@@ -22,7 +24,8 @@ public class Player : MonoBehaviour
     private int exp = 0;
     private int level = 0;
 
-    private float energy = 100.0f;
+    private float energy = BASE_MAX_ENERGY;
+    private float maxEnergy = BASE_MAX_ENERGY;
     private bool isCharging = false;
     private float chargingSpeed = BASE_CHARGING_SPEED;
     private float drainingSpeed = BASE_DRAINING_SPEED;
@@ -58,7 +61,7 @@ public class Player : MonoBehaviour
 
     public void OnCollisionExit2D(Collision2D collision)
     {
-        OnCharingStationCollisionExit(collision);
+        OnChargingStationCollisionExit(collision);
     }
 
     public void AddStatUpgrade(UpgradeType upgrade, float value)
@@ -75,7 +78,7 @@ public class Player : MonoBehaviour
                 runSpeed += value;
                 break;
             case UpgradeType.Energy:
-                energy += value;
+                maxEnergy += value;
                 break;
             case UpgradeType.ChargeSpeed:
                 chargingSpeed += value;
@@ -120,7 +123,7 @@ public class Player : MonoBehaviour
     private void AddExperience()
     {
         exp += 1;
-        if (exp >= 20)
+        if (exp >= EXP_TO_LEVEL_UP)
         {
             exp = 0;
             level++;
@@ -131,7 +134,7 @@ public class Player : MonoBehaviour
 
     private void Charge()
     {
-        if (isCharging)
+        if (isCharging && energy < maxEnergy)
         {
             energy += chargingSpeed;
         }
@@ -187,7 +190,7 @@ public class Player : MonoBehaviour
         Charge();
     }
 
-    private void OnCharingStationCollisionExit(Collision2D collision)
+    private void OnChargingStationCollisionExit(Collision2D collision)
     {
         ChargingStation chargingStation = collision.gameObject.GetComponent<ChargingStation>();
         if (chargingStation == null)
