@@ -1,0 +1,50 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Enemy : MonoBehaviour
+{
+    private GameObject target; //the enemy's target
+    public float moveSpeed = 5; //move speed
+    public float rotationSpeed = 5; //speed of turning
+    private Rigidbody2D rb;
+    void Start()
+    {
+        target = GameObject.Find("Player");
+        rb = GetComponent<Rigidbody2D>();
+    }
+    void Update()
+    {
+        //rotate to look at the player
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target.transform.position - transform.position), rotationSpeed * Time.deltaTime);
+        //move towards the player
+        transform.position += transform.forward * Time.deltaTime * moveSpeed;
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            // Removes this script instance from the game object
+            Destroy(this.gameObject);
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            // Removes this script instance from the game object
+            Destroy(this.gameObject);
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            // Removes this script instance from the game object
+            Destroy(this.gameObject);
+        }
+    }
+}
