@@ -14,7 +14,8 @@ public class TargetIndicator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 dir = (target.transform.position - this.transform.position).normalized;
-        transform.rotation = AngleAxis(angle, Vector3.forward);
+        Vector3 look = transform.InverseTransformPoint(target.transform.position);
+        float Angle = Mathf.Atan2(look.y, look.x) * Mathf.Rad2Deg;
+        transform.Rotate(0, 0, Angle);
     }
 }
