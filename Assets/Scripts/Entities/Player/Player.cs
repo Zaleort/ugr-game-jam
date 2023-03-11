@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     private int level = 0;
 
     private float energy = 100.0f;
+    private bool isCharging = false;
     private float chargingSpeed = BASE_CHARGING_SPEED;
     private float drainingSpeed = BASE_DRAINING_SPEED;
 
@@ -41,6 +42,7 @@ public class Player : MonoBehaviour
     {
         SetBodyVelocity();
         Charge();
+        Drain();
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
@@ -52,6 +54,11 @@ public class Player : MonoBehaviour
     public void OnCollisionStay2D(Collision2D collision)
     {
         OnChargingStationCollision(collision);
+    }
+
+    public void OnCollisionExit2D(Collision2D collision)
+    {
+        OnCharingStationCollisionExit(collision);
     }
 
     private void Move()
@@ -88,7 +95,18 @@ public class Player : MonoBehaviour
 
     private void Charge()
     {
-        energy += chargingSpeed;
+        if (isCharging)
+        {
+            energy += chargingSpeed;
+        }
+    }
+
+    private void Drain()
+    {
+        if (!isCharging && attacks.Length > 0)
+        {
+            energy -= drainingSpeed;
+        }
     }
 
     private void OnEmptyChargeDestroyPowerUps()
@@ -129,7 +147,19 @@ public class Player : MonoBehaviour
             return;
         }
 
+        isCharging = true;
         Charge();
+    }
+
+    private void OnCharingStationCollisionExit(Collision2D collision)
+    {
+        ChargingStation chargingStation = collision.gameObject.GetComponent<ChargingStation>();
+        if (chargingStation == null)
+        {
+            return;
+        }
+
+        isCharging = false;
     }
 
     private void ResetStats()
