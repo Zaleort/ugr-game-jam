@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     private const float BASE_DRAINING_SPEED = 0.05f;
 
     Rigidbody2D body;
-    public Attack[] attacks;
+    public List<Attack> attacks = new List<Attack>();
   
     float horizontal;
     float vertical;
@@ -61,6 +61,42 @@ public class Player : MonoBehaviour
         OnCharingStationCollisionExit(collision);
     }
 
+    public void AddStatUpgrade(UpgradeType upgrade, float value)
+    {
+        switch (upgrade)
+        {
+            case UpgradeType.Health:
+                health += value;
+                break;
+            case UpgradeType.Damage:
+                baseDamage += value;
+                break;
+            case UpgradeType.Speed:
+                runSpeed += value;
+                break;
+            case UpgradeType.Energy:
+                energy += value;
+                break;
+            case UpgradeType.ChargeSpeed:
+                chargingSpeed += value;
+                break;
+        }
+    }
+
+    public void AddAttackUpgrade(Attack attack)
+    {
+        Attack existingAttack = attacks.Find((a) => a.type == attack.type);
+        if (existingAttack)
+        {
+            attack.Upgrade();
+        }
+
+        else
+        {
+            attacks.Add(attack);
+        }
+    }
+
     private void Move()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
@@ -103,7 +139,7 @@ public class Player : MonoBehaviour
 
     private void Drain()
     {
-        if (!isCharging && attacks.Length > 0)
+        if (!isCharging && attacks.Count > 0)
         {
             energy -= drainingSpeed;
         }
@@ -168,6 +204,6 @@ public class Player : MonoBehaviour
         baseDamage = BASE_DAMAGE;
         chargingSpeed = BASE_CHARGING_SPEED;
         drainingSpeed = BASE_DRAINING_SPEED;
-        Array.Clear(attacks, 0, attacks.Length);
+        attacks.Clear();
     }
 }

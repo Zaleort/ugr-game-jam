@@ -14,4 +14,5 @@ public abstract class Attack : MonoBehaviour
     }
 
     public abstract void DoAttack();
+    public abstract void Upgrade();
 }
