@@ -231,7 +231,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4377947416038607436}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.85, y: 0, z: 0}
+  m_LocalPosition: {x: 3, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -452,6 +452,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Blades
+      objectReference: {fileID: 0}
+    - target: {fileID: 2199347409593316132, guid: 7c8af059199ef4a49bf48b42bbf9ec17,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6499713277731012313, guid: 7c8af059199ef4a49bf48b42bbf9ec17,
         type: 3}

@@ -47,3 +47,4 @@ MonoBehaviour:
   player: {fileID: 0}
   laser: {fileID: -9037256490703911364, guid: 4cbb555b0d60f6d43b5bc260d55f18df, type: 3}
   blades: {fileID: 5537707427288091111, guid: 7c8af059199ef4a49bf48b42bbf9ec17, type: 3}
+  spikes: {fileID: 3800473653415228721, guid: 54f67f542eb54d1469257b2c28ce9781, type: 3}

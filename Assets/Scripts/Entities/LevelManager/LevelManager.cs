@@ -7,26 +7,32 @@ public class LevelManager : MonoBehaviour
     public Player player;
     public LaserAttack laser;
     public BladesAttack blades;
+    public SpikesAttack spikes;
 
     public void SetUpgrades(int level)
     {
         switch (level)
         {
             case 1:
-            case 5:
-                Debug.Log("Add upgrade");
-                player.AddAttackUpgrade(laser);
+                player.AddAttackUpgrade(spikes);
                 break;
             case 2:
             case 6:
-                player.AddAttackUpgrade(laser);
+                player.AddStatUpgrade(UpgradeType.Energy, 20f);
                 break;
             case 3:
             case 7:
-                player.AddAttackUpgrade(laser);
+                player.AddAttackUpgrade(blades);
                 break;
             case 4:
             case 8:
+                player.AddStatUpgrade(UpgradeType.Energy, 20f);
+                break;
+            case 5:
+            case 9:
+                player.AddAttackUpgrade(laser);
+                break;
+            case 10:
                 player.AddStatUpgrade(UpgradeType.Energy, 20f);
                 break;
         }

@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dust: {fileID: 309473489637617063, guid: 2ea93b745f00d9b4dbd0094191d6c268, type: 3}
-  dustInterval: 1.5
+  dustInterval: 0.25
   minRandomX: -60
   maxRandomX: 60
   minRandomY: -30
