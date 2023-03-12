@@ -7,11 +7,12 @@ public class Timer : MonoBehaviour
 {
     float timer = 0.0f;
     public Text record;
+    
     void Update()
     {
         timer += Time.deltaTime;
 
-        int seconds = (int)(timer % 60);
+        int seconds = (int)timer;
         record.text = seconds.ToString();
         if (PlayerPrefs.HasKey("record"))
         {

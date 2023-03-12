@@ -31,6 +31,7 @@ public class LevelManager : MonoBehaviour
             case 5:
             case 9:
                 player.AddAttackUpgrade(laser);
+                player.AddStatDowngrade(DowngradeType.Draining, 0.3f);
                 break;
             case 10:
                 player.AddStatUpgrade(UpgradeType.Energy, 20f);
