@@ -15,7 +15,7 @@ public class LevelManager : MonoBehaviour
             case 1:
             case 5:
                 Debug.Log("Add upgrade");
-                player.AddStatUpgrade(UpgradeType.Speed, 0.5f);
+                player.AddAttackUpgrade(laser);
                 break;
             case 2:
             case 6:

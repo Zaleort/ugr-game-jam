@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    private GameObject target; //the enemy's target
+    protected GameObject target; //the enemy's target
     public float moveSpeed = 5; //move speed
     public float rotationSpeed = 5; //speed of turning
 
@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
         MoveToPlayer();
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         OnAttackCollision(collision);
     }
@@ -35,20 +35,23 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void OnAttackCollision(Collision2D collision)
+    private void OnAttackCollision(Collider2D collision)
     {
         Attack attack = collision.gameObject.GetComponent<Attack>();
         if (attack == null)
         {
+            Debug.Log(collision.gameObject.name);
             return;
         }
 
+        Debug.Log("Apply Damage");
+        Debug.Log(attack.damage);
         ApplyDamage(attack.damage);
     }
 
     private void MoveToPlayer()
     {
-        //rotate to look at the player ja
+        //rotate to look at the player
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target.transform.position - transform.position), rotationSpeed * Time.deltaTime);
         //move towards the player
         transform.position += transform.forward * Time.deltaTime * moveSpeed;

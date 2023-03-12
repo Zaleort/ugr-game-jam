@@ -51,7 +51,6 @@ public class Player : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        OnEnemyCollision(collision);
         OnDustCollision(collision);
     }
 
@@ -66,7 +65,8 @@ public class Player : MonoBehaviour
     }
     public void OnTriggerEnter2D(Collider2D collision)
     {
-       OnChargingStationCollision(collision);
+        OnEnemyCollision(collision);
+        OnChargingStationCollision(collision);
     }
 
     public void AddStatUpgrade(UpgradeType upgrade, float value)
@@ -100,8 +100,8 @@ public class Player : MonoBehaviour
 
     public void AddAttackUpgrade(Attack attack)
     {
-        Attack existingAttack = attacks.Find((a) => a.type == attack.type);
-        if (existingAttack)
+        bool attackExists = attacks.Exists(a => a.type == attack.type);
+        if (attackExists)
         {
             attack.Upgrade();
         }
@@ -137,7 +137,7 @@ public class Player : MonoBehaviour
 
     private void AddExperience()
     {
-        experience += 1;
+        experience += 20;
         if (experience >= EXP_TO_LEVEL_UP)
         {
             experience = 0;
@@ -175,7 +175,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnEnemyCollision(Collision2D collision)
+    private void OnEnemyCollision(Collider2D collision)
     {
         Enemy enemy = collision.gameObject.GetComponent<Enemy>();
         if (enemy == null)
