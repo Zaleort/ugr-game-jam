@@ -36,7 +36,7 @@ public class DustSpawner : MonoBehaviour
         {
             GameObject newDust = Instantiate(dust, new Vector3(Random.Range(minRandomX, maxRandomX), Random.Range(minRandomY, maxRandomY), 0), Quaternion.identity);
             pool.Add(newDust);
-            StartCoroutine(SpawnDust(interval, newDust));
+            StartCoroutine(SpawnDust(interval, dust));
             yield break;
         }
 
