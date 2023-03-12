@@ -65,6 +65,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9176616267884478753, guid: 2f2f395a48520934f85aad16389db695,
         type: 3}
+      propertyPath: maxRandomX
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 9176616267884478753, guid: 2f2f395a48520934f85aad16389db695,
+        type: 3}
+      propertyPath: maxRandomY
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9176616267884478753, guid: 2f2f395a48520934f85aad16389db695,
+        type: 3}
+      propertyPath: minRandomX
+      value: -30
+      objectReference: {fileID: 0}
+    - target: {fileID: 9176616267884478753, guid: 2f2f395a48520934f85aad16389db695,
+        type: 3}
+      propertyPath: minRandomY
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9176616267884478753, guid: 2f2f395a48520934f85aad16389db695,
+        type: 3}
       propertyPath: easyEnemyInterval
       value: 2.5
       objectReference: {fileID: 0}
@@ -337,6 +357,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8456581364641360334}
     m_Modifications:
+    - target: {fileID: 1363169857, guid: 99fe409231bb5084f80c7917ccc3a328, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 1518194432617818281, guid: 99fe409231bb5084f80c7917ccc3a328,
         type: 3}
       propertyPath: m_RootOrder
@@ -412,6 +436,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8456581364641360334}
     m_Modifications:
+    - target: {fileID: -8861626862125865202, guid: 2ce4b19b18b90d848a5465f41f60e4b9,
+        type: 3}
+      propertyPath: maxRandomX
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: -8861626862125865202, guid: 2ce4b19b18b90d848a5465f41f60e4b9,
+        type: 3}
+      propertyPath: maxRandomY
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: -8861626862125865202, guid: 2ce4b19b18b90d848a5465f41f60e4b9,
+        type: 3}
+      propertyPath: minRandomX
+      value: -30
+      objectReference: {fileID: 0}
+    - target: {fileID: -8861626862125865202, guid: 2ce4b19b18b90d848a5465f41f60e4b9,
+        type: 3}
+      propertyPath: minRandomY
+      value: -20
+      objectReference: {fileID: 0}
     - target: {fileID: 5276763593270413629, guid: 2ce4b19b18b90d848a5465f41f60e4b9,
         type: 3}
       propertyPath: m_RootOrder
