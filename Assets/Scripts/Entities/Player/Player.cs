@@ -5,11 +5,11 @@ using System;
 
 public class Player : MonoBehaviour
 {
-    private const float BASE_RUN_SPEED = 20.0f;
+    private const float BASE_RUN_SPEED = 2.5f;
     private const float BASE_CHARGING_SPEED = 0.25f;
     private const float BASE_DRAINING_SPEED = 0.015f;
     private const float BASE_MAX_ENERGY = 100f;
-    public const int EXP_TO_LEVEL_UP = 20;
+    public const int EXP_TO_LEVEL_UP = 5;
 
     Rigidbody2D body;
     public List<Attack> attacks = new List<Attack>();
@@ -30,6 +30,9 @@ public class Player : MonoBehaviour
     private bool isCharging = false;
     private float chargingSpeed = BASE_CHARGING_SPEED;
     private float drainingSpeed = BASE_DRAINING_SPEED;
+
+    private float invulnerabilityTime = 0.15f;
+    private float timeToNextDamage = 0f;
 
     void Start()
     {
@@ -56,7 +59,8 @@ public class Player : MonoBehaviour
 
     public void OnTriggerStay2D(Collider2D collision)
     {
-       OnChargingStationCollision(collision);
+        OnEnemyCollision(collision);
+        OnChargingStationCollision(collision);
     }
 
     public void OnTriggerExit2D(Collider2D collision)
@@ -118,6 +122,55 @@ public class Player : MonoBehaviour
     {
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
+        
+        // Izq
+        if (horizontal < 0 && vertical == 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 90);
+        }
+
+        // Der
+        else if (horizontal > 0 && vertical == 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, -90);
+        }
+
+        // Up
+        else if (horizontal == 0 && vertical < 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 180);
+        }
+
+
+        // Down
+        else if (horizontal == 0 && vertical > 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+
+        // Top / izq
+        if (horizontal < 0 && vertical < 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 135);
+        }
+
+        // Bot / izq
+        else if (horizontal < 0 && vertical > 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 45);
+        }
+
+        // Top / der
+        else if (horizontal > 0 && vertical < 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, -135);
+        }
+
+        // Bot / der
+        else if (horizontal > 0 && vertical > 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, -45);
+        }
     }
 
     private void SetBodyVelocity()
@@ -137,7 +190,7 @@ public class Player : MonoBehaviour
 
     private void AddExperience()
     {
-        experience += 20;
+        experience += 1;
         if (experience >= EXP_TO_LEVEL_UP)
         {
             experience = 0;
@@ -177,6 +230,11 @@ public class Player : MonoBehaviour
 
     private void OnEnemyCollision(Collider2D collision)
     {
+        if (!CheckIfShouldReceiveDamage())
+        {
+            return;
+        }
+
         Enemy enemy = collision.gameObject.GetComponent<Enemy>();
         if (enemy == null)
         {
@@ -253,5 +311,16 @@ public class Player : MonoBehaviour
             attackComponent.gameObject.SetActive(true);
             attacks.Add(attack);
         }
+    }
+
+    private bool CheckIfShouldReceiveDamage()
+    {
+        if (timeToNextDamage <= Time.time)
+        {
+            timeToNextDamage = Time.time + invulnerabilityTime;
+            return true;
+        }
+
+        return false;
     }
 }

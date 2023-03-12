@@ -63,6 +63,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySpawner
       objectReference: {fileID: 0}
+    - target: {fileID: 9176616267884478753, guid: 2f2f395a48520934f85aad16389db695,
+        type: 3}
+      propertyPath: easyEnemyInterval
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 9176616267884478754, guid: 2f2f395a48520934f85aad16389db695,
         type: 3}
       propertyPath: m_RootOrder
@@ -225,6 +230,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8456581364641360334}
     m_Modifications:
+    - target: {fileID: 1656454695549921037, guid: 5ea0606250e606949924c1d0a1baaf9e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3634326700091120581, guid: 5ea0606250e606949924c1d0a1baaf9e,
         type: 3}
       propertyPath: m_Name

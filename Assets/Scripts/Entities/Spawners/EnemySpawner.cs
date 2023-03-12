@@ -12,11 +12,11 @@ public class EnemySpawner : MonoBehaviour
     private GameObject hardEnemy;
 
     [SerializeField]
-    private float easyEnemyInterval = 3.5f;
+    private float easyEnemyInterval;
     [SerializeField]
-    private float mediumEnemyInterval = 10.5f;
+    private float mediumEnemyInterval;
     [SerializeField]
-    private float hardEnemyInterval = 20.5f;
+    private float hardEnemyInterval;
 
     [SerializeField]
     private float minRandomX;

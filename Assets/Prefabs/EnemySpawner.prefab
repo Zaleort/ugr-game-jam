@@ -46,13 +46,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   easyEnemy: {fileID: 7492247610062657715, guid: d8a3a65530de90c45b3b73caaaef16c2,
     type: 3}
-  mediumEnemy: {fileID: 7492247610062657715, guid: 4e584eff83b7d3b4ba06707e131d364a,
+  mediumEnemy: {fileID: 7492247610062657715, guid: 4eeedb7f7c3d67c4cb12c2a4b038828c,
     type: 3}
-  hardEnemy: {fileID: 7492247610062657715, guid: 4eeedb7f7c3d67c4cb12c2a4b038828c,
+  hardEnemy: {fileID: 7492247610062657715, guid: 4e584eff83b7d3b4ba06707e131d364a,
     type: 3}
-  easyEnemyInterval: 3.5
-  mediumEnemyInterval: 10.5
-  hardEnemyInterval: 20.5
+  easyEnemyInterval: 1
+  mediumEnemyInterval: 10
+  hardEnemyInterval: 15
   minRandomX: -60
   maxRandomX: 60
   minRandomY: -30

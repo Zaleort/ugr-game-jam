@@ -26,7 +26,7 @@ public class LaserAttack : Attack
     // Update is called once per frame
     void Update()
     {
-        transform.RotateAround(transform.parent.position, transform.parent.forward, 125 * Time.deltaTime);
+        transform.RotateAround(transform.parent.position, transform.parent.forward, 240 * Time.deltaTime);
         DoAttack();
     }
 }

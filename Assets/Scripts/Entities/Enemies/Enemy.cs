@@ -48,10 +48,18 @@ public class Enemy : MonoBehaviour
 
     private void MoveToPlayer()
     {
+        if (target == null)
+        {
+            return;
+        }
+
         //rotate to look at the player
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target.transform.position - transform.position), rotationSpeed * Time.deltaTime);
+        Vector3 look = transform.InverseTransformPoint(target.transform.position);
+        float Angle = Mathf.Atan2(look.y, look.x) * Mathf.Rad2Deg;
+        transform.Rotate(0, 0, Angle);
+
         //move towards the player
-        transform.position += transform.forward * Time.deltaTime * moveSpeed;
+        transform.position += transform.right * Time.deltaTime * moveSpeed;
     }
 
     private void SetTarget()
