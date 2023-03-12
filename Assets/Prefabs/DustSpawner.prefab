@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8167576996258005518
+--- !u!1 &5276763593270413631
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,42 +8,45 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7260217222079658347}
-  - component: {fileID: -4233554475517276174}
+  - component: {fileID: 5276763593270413629}
+  - component: {fileID: -8861626862125865202}
   m_Layer: 0
-  m_Name: LevelManager
+  m_Name: DustSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7260217222079658347
+--- !u!4 &5276763593270413629
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8167576996258005518}
+  m_GameObject: {fileID: 5276763593270413631}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 24.9, y: -7.95, z: -5.2727485}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-4233554475517276174
+--- !u!114 &-8861626862125865202
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8167576996258005518}
+  m_GameObject: {fileID: 5276763593270413631}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b27dbcc836d39ee458c8525b96eeea8d, type: 3}
+  m_Script: {fileID: 11500000, guid: 009100ca70ba9f147b61f00a06a45983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  laser: {fileID: -9037256490703911364, guid: 4cbb555b0d60f6d43b5bc260d55f18df, type: 3}
-  blades: {fileID: 5537707427288091111, guid: 7c8af059199ef4a49bf48b42bbf9ec17, type: 3}
+  dust: {fileID: 309473489637617063, guid: 2ea93b745f00d9b4dbd0094191d6c268, type: 3}
+  dustInterval: 1.5
+  minRandomX: -60
+  maxRandomX: 60
+  minRandomY: -30
+  maxRandomY: 30

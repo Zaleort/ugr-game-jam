@@ -100,10 +100,10 @@ public class Player : MonoBehaviour
 
     public void AddAttackUpgrade(Attack attack)
     {
-        bool attackExists = attacks.Exists(a => a.type == attack.type);
-        if (attackExists)
+        Attack existingAttack = attacks.Find(a => a.type == attack.type);
+        if (existingAttack)
         {
-            attack.Upgrade();
+            existingAttack.Upgrade();
         }
 
         else
@@ -242,7 +242,7 @@ public class Player : MonoBehaviour
 
     private void ActivateAttack(Attack attack)
     {
-        Attack[] attackComponents = gameObject.GetComponentsInChildren<Attack>();
+        Attack[] attackComponents = gameObject.GetComponentsInChildren<Attack>(true);
         foreach (Attack attackComponent in attackComponents)
         {
             if (attackComponent.type != attack.type)

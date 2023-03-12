@@ -40,12 +40,9 @@ public class Enemy : MonoBehaviour
         Attack attack = collision.gameObject.GetComponent<Attack>();
         if (attack == null)
         {
-            Debug.Log(collision.gameObject.name);
             return;
         }
 
-        Debug.Log("Apply Damage");
-        Debug.Log(attack.damage);
         ApplyDamage(attack.damage);
     }
 
