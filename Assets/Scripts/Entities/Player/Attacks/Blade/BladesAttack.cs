@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class BladesAttack : Attack
 {
+    private CircleCollider2D[] colliders;
+
+    private void Start()
+    {
+        colliders = gameObject.GetComponents<CircleCollider2D>();
+    }
     public override void DoAttack()
     {
-        CircleCollider2D[] colliders = gameObject.GetComponents<CircleCollider2D>();
         if (!CheckIfShouldAttack())
         {
             foreach (CircleCollider2D col in colliders)

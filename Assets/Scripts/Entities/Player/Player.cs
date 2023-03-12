@@ -104,14 +104,17 @@ public class Player : MonoBehaviour
 
     public void AddAttackUpgrade(Attack attack)
     {
+        Debug.Log("Spikes");
         Attack existingAttack = attacks.Find(a => a.type == attack.type);
         if (existingAttack)
         {
+            Debug.Log("Attack exists");
             existingAttack.Upgrade();
         }
 
         else
         {
+            Debug.Log("Add new attack");
             ActivateAttack(attack);
         }
 
@@ -289,7 +292,7 @@ public class Player : MonoBehaviour
 
     private void DeactivateAttacks()
     {
-        Attack[] attackComponents = gameObject.GetComponentsInChildren<Attack>();
+        Attack[] attackComponents = gameObject.GetComponentsInChildren<Attack>(true);
         foreach (Attack attackComponent in attackComponents)
         {
             attackComponent.gameObject.SetActive(false);

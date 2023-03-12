@@ -147,8 +147,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  damage: 3
-  attackSpeed: 0.5
+  damage: 10
+  attackSpeed: 1
   nextAttack: 0
 --- !u!58 &886848627170988072
 CircleCollider2D:

@@ -4,29 +4,33 @@ using UnityEngine;
 
 public class LaserAttack : Attack
 {
+    private BoxCollider2D _collider;
 
+    private void Start()
+    {
+        _collider = gameObject.GetComponent<BoxCollider2D>();
+    }
     public override void DoAttack()
     {
-        BoxCollider2D collider = gameObject.GetComponent<BoxCollider2D>();
         if (!CheckIfShouldAttack())
         {
-            collider.enabled = true;
+            _collider.enabled = true;
             return;
         }
 
         GetNextAttackTime();
-        collider.enabled = false;
+        _collider.enabled = false;
     }
 
     public override void Upgrade()
     {
-        damage += 0.02f;
+        damage += 0.2f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.RotateAround(transform.parent.position, transform.parent.forward, 240 * Time.deltaTime);
+        transform.Rotate(transform.forward, 360 * Time.deltaTime, Space.World);
         DoAttack();
     }
 }
