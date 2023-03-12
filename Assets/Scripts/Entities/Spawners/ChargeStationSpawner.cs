@@ -5,14 +5,20 @@ using UnityEngine;
 
 public class ChargeStationSpawner : MonoBehaviour
 {
+    [SerializeField]
     public List<GameObject> chargeStationsList = new List<GameObject>();
+
     [Header("How many seconds is the station activated")]
     public int secondsActive=5;
     int previousChargeStation;
     int randomchargeSation;
+
+    Transform positionStation;
+    GameObject actualStation;
+     
     // Start is called before the first frame update
     void Start()
-    {
+    { 
         randomchargeSation = 0;
         InvokeRepeating("ActiveChargeStation", 0, secondsActive);
     }
@@ -24,14 +30,22 @@ public class ChargeStationSpawner : MonoBehaviour
     }
 
     private void ActiveChargeStation() {
-        chargeStationsList[previousChargeStation].SetActive(false);
-        while (previousChargeStation == randomchargeSation) { 
+        if (previousChargeStation > -1) {
+            chargeStationsList[previousChargeStation].SetActive(false);
+        }
+       
+        while (previousChargeStation != randomchargeSation) 
+        { 
             randomchargeSation = Random.Range(0, chargeStationsList.Count()); 
         }
         previousChargeStation = randomchargeSation;
         chargeStationsList[randomchargeSation].SetActive(true);
-        Debug.Log("Lista número" + randomchargeSation);
-
-
+        actualStation = chargeStationsList[randomchargeSation];
+        positionStation = actualStation.GetComponent<Transform>();
     }
+  
+    public Transform getPositionStation(){
+        return positionStation;
+    }
+
 }

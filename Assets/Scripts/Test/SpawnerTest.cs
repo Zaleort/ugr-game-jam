@@ -4,7 +4,15 @@ using UnityEngine;
 
 public class SpawnerTest : MonoBehaviour
 {
-    public GameObject enemy;
+    [SerializeField]
+    [Header("Press Z")]
+    private GameObject easyEnemy;
+    [SerializeField]
+    [Header("Press X")]
+    private GameObject mediumEnemy;
+    [SerializeField]
+    [Header("Press C")]
+    private GameObject hardEnemy;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,9 +22,17 @@ public class SpawnerTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
-            Instantiate(enemy, this.transform.position, this.transform.rotation);
+            Instantiate(easyEnemy, this.transform.position, this.transform.rotation);
+        }
+        else if (Input.GetKeyDown(KeyCode.X))
+        {
+            Instantiate(mediumEnemy, this.transform.position, this.transform.rotation);
+        }
+        else if (Input.GetKeyDown(KeyCode.C))
+        {
+            Instantiate(mediumEnemy, this.transform.position, this.transform.rotation);
         }
     }
 
