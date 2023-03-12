@@ -13,39 +13,47 @@ public class ChargeStationSpawner : MonoBehaviour
     int previousChargeStation;
     int randomchargeSation;
 
+    GameObject arrow;
+
     Transform positionStation;
     GameObject actualStation;
+
+    TargetIndicator targetIndicator;
      
     // Start is called before the first frame update
     void Start()
-    { 
-        randomchargeSation = 0;
+    {
+        arrow = GameObject.Find("TargetIndicator");
+        previousChargeStation = -1;
+        randomchargeSation = -2;
+        targetIndicator = arrow.GetComponent<TargetIndicator>();
         InvokeRepeating("ActiveChargeStation", 0, secondsActive);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+    private void ActiveChargeStation() {
+        randomchargeSation = Random.Range(0, chargeStationsList.Count());
+
+        if (previousChargeStation != randomchargeSation)
+        {
+            if (previousChargeStation > -1) {
+                chargeStationsList[previousChargeStation].SetActive(false);
+            }
+            
+            Debug.Log("Total =" + chargeStationsList.Count() + "Previous =" + previousChargeStation + "Actual =" + randomchargeSation);
+            previousChargeStation = randomchargeSation;
+            chargeStationsList[randomchargeSation].SetActive(true);
+            actualStation = chargeStationsList[randomchargeSation];
+            positionStation = actualStation.GetComponent<Transform>();
+            targetIndicator.setPointToLookAt(positionStation);
+        }
+        else {
+            ActiveChargeStation();
+        }
+
+       
         
     }
-
-    private void ActiveChargeStation() {
-        if (previousChargeStation > -1) {
-            chargeStationsList[previousChargeStation].SetActive(false);
-        }
-       
-        while (previousChargeStation != randomchargeSation) 
-        { 
-            randomchargeSation = Random.Range(0, chargeStationsList.Count()); 
-        }
-        previousChargeStation = randomchargeSation;
-        chargeStationsList[randomchargeSation].SetActive(true);
-        actualStation = chargeStationsList[randomchargeSation];
-        positionStation = actualStation.GetComponent<Transform>();
-    }
   
-    public Transform getPositionStation(){
-        return positionStation;
-    }
+    
 
 }
